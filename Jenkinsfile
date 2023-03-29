@@ -14,5 +14,12 @@ pipeline {
                 }
             }
         }
+        stage('SSH server stage') {
+            steps {
+                sshagent(['ssh-remote']) {
+                    sh 'ssh -o StrictHostKeyChecking=no -l root 172.16.10.102 touch test.txt'
+                }
+            }
+        }
     }
 }
